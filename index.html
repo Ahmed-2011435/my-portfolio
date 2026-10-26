@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أحمد محمد رضا عراقي | معرض الإنجازات والمشاريع 🚀</title>
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #070b14;
+            --bg-secondary: #0f172a;
+            --card-bg: rgba(15, 23, 42, 0.75);
+            --card-border: rgba(0, 242, 254, 0.2);
+            --accent-cyan: #00f2fe;
+            --accent-blue: #4facfe;
+            --accent-pink: #ff2a85;
+            --accent-purple: #9d4edd;
+            --text-main: #f8fafc;
+            --text-sub: #94a3b8;
+            --border-color: #1e293b;
+            --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+            --neon-glow: 0 0 20px rgba(0, 242, 254, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(at 10% 10%, rgba(255, 42, 133, 0.1) 0px, transparent 50%),
+                radial-gradient(at 90% 10%, rgba(0, 242, 254, 0.12) 0px, transparent 50%),
+                radial-gradient(at 50% 90%, rgba(157, 78, 221, 0.12) 0px, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Anime Particles Canvas */
+        #anime-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Sidebar Styling */
+        aside {
+            width: 320px;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 30px 20px;
+            border-left: 1px solid var(--card-border);
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+            box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+        }
+
+        aside::-webkit-scrollbar {
+            width: 6px;
+        }
+        aside::-webkit-scrollbar-thumb {
+            background: var(--accent-cyan);
+            border-radius: 10px;
+        }
+
+        .profile-container {
+            text-align: center;
+            position: relative;
+        }
+
+        .avatar-wrapper {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 15px;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-cyan);
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.6);
+            transition: transform 0.4s ease;
+        }
+
+        .profile-img:hover {
+            transform: scale(1.05) rotate(3deg);
+        }
+
+        .anime-badge {
+            position: absolute;
+            bottom: -5px;
+            right: 0px;
+            background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple));
+            color: white;
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 20px;
+            border: 2px solid var(--bg-dark);
+            box-shadow: 0 0 10px rgba(255, 42, 133, 0.6);
+        }
+
+        .profile-info h2 {
+            font-size: 1.3rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+            background: linear-gradient(90deg, #fff, var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .profile-info p {
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        .contact-section h3 {
+            font-size: 1rem;
+            color: var(--text-sub);
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+            font-size: 0.88rem;
+            background: rgba(30, 41, 59, 0.4);
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s;
+        }
+
+        .contact-item:hover {
+            border-color: var(--accent-cyan);
+            transform: translateX(-5px);
+            background: rgba(0, 242, 254, 0.08);
+        }
+
+        .contact-item i {
+            color: var(--accent-cyan);
+            font-size: 1.1rem;
+            width: 22px;
+            text-align: center;
+        }
+
+        .contact-item a {
+            color: var(--text-main);
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .btn-copy {
+            background: transparent;
+            border: none;
+            color: var(--text-sub);
+            cursor: pointer;
+            margin-right: auto;
+            transition: color 0.2s;
+        }
+
+        .btn-copy:hover {
+            color: var(--accent-cyan);
+        }
+
+        /* Main Content Styling */
+        main {
+            flex: 1;
+            padding: 35px;
+            position: relative;
+            z-index: 1;
+            max-width: 1400px;
+        }
+
+        /* Anime Welcome Banner Widget */
+        .anime-banner {
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9), rgba(30, 41, 59, 0.7));
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--accent-cyan);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 35px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            box-shadow: var(--neon-glow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .anime-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 242, 254, 0.1) 0%, transparent 60%);
+            animation: pulse 4s infinite linear;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.9); opacity: 0.5; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+            100% { transform: scale(0.9); opacity: 0.5; }
+        }
+
+        .anime-mascot-img {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent-pink);
+            box-shadow: 0 0 20px rgba(255, 42, 133, 0.5);
+            flex-shrink: 0;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .anime-speech-bubble {
+            background: rgba(15, 23, 42, 0.9);
+            border: 1px solid var(--accent-pink);
+            border-radius: 15px;
+            padding: 18px 22px;
+            position: relative;
+            flex: 1;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .anime-speech-bubble::before {
+            content: '';
+            position: absolute;
+            right: -12px;
+            top: 50%;
+            transform: translateY(-50%);
+            border-width: 8px 0 8px 12px;
+            border-style: solid;
+            border-color: transparent transparent transparent var(--accent-pink);
+        }
+
+        .anime-speech-bubble h3 {
+            color: var(--accent-pink);
+            font-size: 1.1rem;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .anime-speech-bubble p {
+            font-size: 0.98rem;
+            color: var(--text-main);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .anime-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .anime-btn {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            color: #0f172a;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .anime-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.4rem;
+            color: var(--accent-cyan);
+            margin-bottom: 25px;
+            margin-top: 10px;
+        }
+
+        .section-header i {
+            font-size: 1.6rem;
+            color: var(--accent-pink);
+            filter: drop-shadow(0 0 8px rgba(255, 42, 133, 0.6));
+        }
+
+        /* Glassmorphic Card General */
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            padding: 28px;
+            margin-bottom: 35px;
+            box-shadow: var(--glass-shadow);
+            position: relative;
+        }
+
+        .story-card p {
+            line-height: 1.9;
+            font-size: 1.02rem;
+            color: #cbd5e1;
+        }
+
+        .highlight-text {
+            color: var(--accent-cyan);
+            font-weight: bold;
+        }
+
+        /* Projects Section Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: var(--glass-shadow);
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 12px 35px rgba(0, 242, 254, 0.25);
+        }
+
+        .project-img-wrapper {
+            width: 100%;
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .project-card:hover .project-img-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .project-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(8px);
+            color: var(--accent-cyan);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            border: 1px solid var(--accent-cyan);
+        }
+
+        .project-body {
+            padding: 22px;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            justify-content: space-between;
+        }
+
+        .project-body h4 {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .project-body h4 i {
+            color: var(--accent-cyan);
+        }
+
+        .project-body p {
+            font-size: 0.92rem;
+            color: var(--text-sub);
+            line-height: 1.6;
+            margin-bottom: 18px;
+        }
+
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tag {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-sub);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            transition: all 0.3s;
+        }
+
+        .tag.neon {
+            border-color: var(--accent-cyan);
+            color: var(--accent-cyan);
+            background: rgba(0, 242, 254, 0.1);
+        }
+
+        /* Certificate Filters & Search */
+        .controls-row {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-box input {
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 12px 45px 12px 18px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            outline: none;
+            backdrop-filter: blur(10px);
+            transition: border-color 0.3s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-sub);
+            font-size: 1.1rem;
+        }
+
+        .folders-nav {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .folder-btn {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            color: var(--text-sub);
+            border: 1px solid var(--border-color);
+            padding: 10px 18px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .folder-btn.active, .folder-btn:hover {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            color: #0f172a;
+            border-color: transparent;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+        }
+
+        /* Certificates Grid */
+        .certs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 22px;
+        }
+
+        .cert-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-7px);
+            border-color: var(--accent-cyan);
+            box-shadow: 0 8px 25px rgba(0, 242, 254, 0.25);
+        }
+
+        .cert-img-container {
+            width: 100%;
+            height: 185px;
+            background-color: #0b1120;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .cert-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .cert-card:hover .cert-img-container img {
+            transform: scale(1.08);
+        }
+
+        .cert-body {
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
+        }
+
+        .cert-body h4 {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            margin-bottom: 6px;
+            line-height: 1.4;
+        }
+
+        .cert-body p {
+            font-size: 0.82rem;
+            color: var(--text-sub);
+            margin-bottom: 10px;
+        }
+
+        .cert-body .cert-date {
+            font-size: 0.78rem;
+            color: var(--accent-cyan);
+            font-weight: bold;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            color: #0f172a;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(0, 242, 254, 0.5);
+            z-index: 2000;
+            display: none;
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Modal Preview */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(7, 11, 20, 0.94);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 88vh;
+            border-radius: 12px;
+            box-shadow: 0 0 40px rgba(0, 242, 254, 0.5);
+            border: 2px solid var(--accent-cyan);
+            object-fit: contain;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: var(--text-main);
+            font-size: 38px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .modal-close:hover {
+            color: var(--accent-pink);
+        }
+
+        /* Responsive Layout */
+        @media (max-width: 992px) {
+            body {
+                flex-direction: column;
+            }
+            aside {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+            main {
+                padding: 20px;
+            }
+            .anime-banner {
+                flex-direction: column;
+                text-align: center;
+            }
+            .anime-speech-bubble::before {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Anime Floating Particle Effect Canvas -->
+    <canvas id="anime-canvas"></canvas>
+
+    <!-- الشريط الجانبي (Sidebar) -->
+    <aside>
+        <div class="profile-container">
+            <div class="avatar-wrapper">
+                <img src="https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=400&q=80" alt="أحمد محمد رضا" class="profile-img">
+                <div class="anime-badge"><i class="fa-solid fa-bolt"></i> STEM Student</div>
+            </div>
+            <div class="profile-info">
+                <h2>أحمد محمد رضا عراقي</h2>
+                <p><i class="fa-solid fa-graduation-cap"></i> 15 سنة | طالب ثانوي | مبرمج | طبيب المستقبل</p>
+            </div>
+        </div>
+
+        <div class="contact-section">
+            <h3><i class="fa-solid fa-address-card"></i> تواصل معي</h3>
+            
+            <div class="contact-item">
+                <i class="fa-solid fa-envelope"></i>
+                <a href="mailto:ahmederaky592@gmail.com">ahmederaky592@gmail.com</a>
+                <button class="btn-copy" onclick="copyText('ahmederaky592@gmail.com')" title="نسخ البريد"><i class="fa-regular fa-copy"></i></button>
+            </div>
+
+            <div class="contact-item">
+                <i class="fa-solid fa-phone"></i>
+                <a href="tel:+201096739669">01145105096</a>
+                <button class="btn-copy" onclick="copyText('01096739669')" title="نسخ الرقم"><i class="fa-regular fa-copy"></i></button>
+            </div>
+
+            <div class="contact-item">
+                <i class="fa-brands fa-facebook"></i>
+                <a href="https://facebook.com" target="_blank">الصفحة الشخصية</a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- المحتوى الرئيسي -->
+    <main>
+        <!-- Anime Mascot Interactive Welcome Banner -->
+        <section class="anime-banner">
+            <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?auto=format&fit=crop&w=400&q=80" alt="أنمي مَسكوت" class="anime-mascot-img">
+            <div class="anime-speech-bubble">
+                <h3><i class="fa-solid fa-wand-magic-sparkles"></i> مرحباً بك في عالم أحمد الذكي!</h3>
+                <p id="anime-quote">"أهلاً بك يا صديقي! أنا مرافق أحمد البرمجي. يسرني إطلاعك على مشاريعه في الذكاء الاصطناعي والطب ورؤيته الطموحة!" 🌟</p>
+                <div class="anime-actions">
+                    <button class="anime-btn" onclick="nextAnimeQuote()"><i class="fa-solid fa-comment-dots"></i> حكمة جديدة</button>
+                    <button class="anime-btn" style="background: linear-gradient(135deg, var(--accent-pink), var(--accent-purple)); color: white;" onclick="triggerConfetti()"><i class="fa-solid fa-sparkles"></i> تحية الأنمي!</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- قصة وطموح أحمد -->
+        <section class="glass-card story-card">
+            <div class="section-header" style="margin-top:0;">
+                <i class="fa-solid fa-rocket"></i>
+                <h3 style="color: var(--accent-cyan);">قصتي وطموحي</h3>
+            </div>
+            <p>
+                أنا طالب مصري بالصف الأول الثانوي عمري 15 عاماً، شغوف جداً بالبرمجة، والذكاء الاصطناعي، والمواد العلمية. 
+                سبق وأن تقدمت بطلب للالتحاق بمدرسة المتفوقين في العلوم والتكنولوجيا <span class="highlight-text">(STEM بعين شمس)</span>، ورغم توفيقي في الامتحان ووجود اسمي ضمن قوائم الانتظار، إلا أن هذه التجربة زادتني إصراراً وشغفاً بالتعلم الذاتي. 
+                طموحي الأكبر هو الالتحاق بـ <span class="highlight-text">كلية الطب</span>، لدمج خبرتي في تطوير الأنظمة المدمجة والذكاء الاصطناعي لتطوير حلول واختراعات تخدم الطب والبشرية! 🩺⚡
+            </p>
+        </section>
+
+        <!-- قسم المشاريع الابتكارية الهندسية والطبية -->
+        <div class="section-header">
+            <i class="fa-solid fa-microchip"></i>
+            <h3>المشاريع الابتكارية الهندسية والطبية</h3>
+        </div>
+
+        <section class="projects-grid">
+            <!-- مشروع الذكاء الاصطناعي الطبي -->
+            <div class="project-card">
+                <div class="project-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80" alt="التطبيق الذكي لأمراض القلب">
+                    <span class="project-badge"><i class="fa-solid fa-heart-pulse"></i> Medical AI</span>
+                </div>
+                <div class="project-body">
+                    <div>
+                        <h4><i class="fa-solid fa-brain"></i> التطبيق الذكي لتشخيص أمراض القلب</h4>
+                        <p>
+                            نظام برمجي مبني على تقنيات التعلم الآلي لتشخيص البيانات الطبية للمرضى والتنبؤ المبكر بأمراض القلب والأوعية الدموية بالدمج بين علوم البيانات والطب.
+                        </p>
+                    </div>
+                    <div class="tags-container">
+                        <span class="tag neon">Python</span>
+                        <span class="tag neon">Machine Learning</span>
+                        <span class="tag">Healthcare AI</span>
+                        <span class="tag">Data Analysis</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- مشروع نظام التحكم في سرعة السيارات -->
+            <div class="project-card">
+                <div class="project-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80" alt="نظام التحكم الذكي لسرعة السيارات">
+                    <span class="project-badge"><i class="fa-solid fa-car-side"></i> IoT & Automation</span>
+                </div>
+                <div class="project-body">
+                    <div>
+                        <h4><i class="fa-solid fa-gauge-high"></i> نظام ISA الذكي للتحكم بالسرعة ورصد المخالفات</h4>
+                        <p>
+                            مشروع مدمج يعتمد على المتحكم ESP32 ومستشعرات الموجات فوق الصوتية Ultrasonic ونظام الملاحة GPS والـ Servos وكاميرا ESP32-CAM لتحديد سرعة المركبة آلياً وتوثيق المخالفات.
+                        </p>
+                    </div>
+                    <div class="tags-container">
+                        <span class="tag neon">ESP32 Controller</span>
+                        <span class="tag neon">Ultrasonic HC-SR04</span>
+                        <span class="tag">NEO-6M GPS</span>
+                        <span class="tag">ESP32-CAM</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم الشهادات -->
+        <div class="section-header">
+            <i class="fa-solid fa-award"></i>
+            <h3>معرض الشهادات والأوسمة (22 شهادة)</h3>
+        </div>
+
+        <div class="controls-row">
+            <!-- شريط البحث -->
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" oninput="handleSearch()" placeholder="ابحث باسم الشهادة أو الجهة المانحة...">
+            </div>
+
+            <!-- فولدرات التصفية -->
+            <div class="folders-nav">
+                <button class="folder-btn active" onclick="filterCerts('all', event)"><i class="fa-solid fa-folder-open"></i> الكل (22)</button>
+                <button class="folder-btn" onclick="filterCerts('deci', event)"><i class="fa-solid fa-graduation-cap"></i> أشبال مصر & Udacity</button>
+                <button class="folder-btn" onclick="filterCerts('huawei', event)"><i class="fa-brands fa-huawei"></i> أكاديمية Huawei</button>
+                <button class="folder-btn" onclick="filterCerts('hp', event)"><i class="fa-solid fa-laptop-code"></i> HP LIFE</button>
+                <button class="folder-btn" onclick="filterCerts('tech', event)"><i class="fa-solid fa-code"></i> البرمجة والأمن السيبراني</button>
+                <button class="folder-btn" onclick="filterCerts('honors', event)"><i class="fa-solid fa-award"></i> المسابقات والقرآن الكريم</button>
+            </div>
+        </div>
+
+        <!-- شبكة عرض الشهادات -->
+        <div class="certs-grid" id="certsGrid">
+            <!-- يتم التحميل هنا عبر JavaScript -->
+        </div>
+    </main>
+
+    <!-- إشعار النسخ السريع -->
+    <div class="toast" id="toast">تم النسخ بنجاح! 🚀</div>
+
+    <!-- النافذة التفاعلية لمعاينة الشهادة المكبرة -->
+    <div class="modal" id="imageModal" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalImg" src="" alt="معاينة الشهادة">
+    </div>
+
+    <script>
+        // قائمة الـ 22 شهادة
+        const certificates = [
+           { title: "Computer Network (Arabic)", provider: "Huawei ICT Academy", category: "huawei", date: "2026-01-07", img: "https://uploads.onecompiler.io/44sv66pr9/1793031386000/WhatsApp%20Image%202026-10-26%20at%207.05.39%20PM.jpeg" },
+            { title: "Information Representation & Data Organization", provider: "Huawei ICT Academy", category: "huawei", date: "2025-12-21", img: "https://uploads.onecompiler.io/44sv66pr9/1793031585622/WhatsApp%20Image%202026-10-26%20at%207.05.42%20PM.jpeg" },
+            { title: "الذكاء الاصطناعي للمهنيين في مجال الأعمال", provider: "HP LIFE Foundation", category: "hp", date: "2026-01-05", img: "https://uploads.onecompiler.io/44sv66pr9/1793031414134/WhatsApp%20Image%202026-10-26%20at%207.05.41%20PM%20(2).jpeg" },
+            { title: "Scientific Computing with Python (300h)", provider: "freeCodeCamp", category: "tech", date: "2025-06-13", img: "https://uploads.onecompiler.io/44sv66pr9/1793031408032/WhatsApp%20Image%202026-10-26%20at%207.05.41%20PM%20(1).jpeg" },
+            { title: "الذكاء الاصطناعي للمبتدئين", provider: "HP LIFE Foundation", category: "hp", date: "2026-01-05", img: "https://uploads.onecompiler.io/44sv66pr9/1793031414134/WhatsApp%20Image%202026-10-26%20at%207.05.41%20PM%20(2).jpeg" },
+            { title: "شهادة تقدير وتفوق دراسي", provider: "التفوق الأكاديمي", category: "honors", date: "2023", img: "https://uploads.onecompiler.io/44sv66pr9/1793031449959/WhatsApp%20Image%202026-10-26%20at%207.05.41%20PM.jpeg" },
+            { title: "شهادة شكر وتقدير - حفظة القرآن الكريم", provider: "جمعية علوم الرياضة", category: "honors", date: "رمضان 2023", img: "https://uploads.onecompiler.io/44sv66pr9/1793031423815/WhatsApp%20Image%202026-10-26%20at%207.05.41%20PM%20(3).jpeg" },
+            { title: "التواصل المهني من أجل النمو الوظيفي", provider: "HP LIFE Foundation", category: "hp", date: "2026-01-05", img: "https://uploads.onecompiler.io/44sv66pr9/1793031429553/WhatsApp%20Image%202026-10-26%20at%207.05.41%20PM%20(4).jpeg" },
+            { title: "Development & Basic Concepts of Cloud Computing", provider: "Huawei ICT Academy", category: "huawei", date: "2026-01-01", img: "https://uploads.onecompiler.io/44sv66pr9/1793031483243/WhatsApp%20Image%202026-10-26%20at%207.05.42%20PM%20(3).jpeg" },
+            { title: "Information Representation (CRA Training)", provider: "Huawei ICT Academy", category: "huawei", date: "2025-12-21", img: "https://uploads.onecompiler.io/44sv66pr9/1793031473753/WhatsApp%20Image%202026-10-26%20at%207.05.42%20PM%20(2).jpeg" },
+            { title: "شهادة شكر وتقدير واعتزاز", provider: "التفوق والاجتهاد", category: "honors", date: "رمضان 1443", img: "https://uploads.onecompiler.io/44sv66pr9/1793031460657/WhatsApp%20Image%202026-10-26%20at%207.05.42%20PM%20(1).jpeg" },
+            { title: "Data Management & Analytics", provider: "Huawei ICT Academy", category: "huawei", date: "2025-12-21", img: "https://uploads.onecompiler.io/44sv66pr9/1793031532375/WhatsApp%20Image%202026-10-26%20at%207.05.42%20PM%20(6).jpeg" },
+            { title: "Cloud Basics: Development & Concepts", provider: "Huawei ICT Academy", category: "huawei", date: "2026-01-01", img: "https://uploads.onecompiler.io/44sv66pr9/1793031483243/WhatsApp%20Image%202026-10-26%20at%207.05.42%20PM%20(3).jpeg" },
+            { title: "Overview of AI (Arabic)", provider: "Huawei ICT Academy", category: "huawei", date: "2025-12-13", img: "https://uploads.onecompiler.io/44sv66pr9/1793031491775/WhatsApp%20Image%202026-10-26%20at%207.05.42%20PM%20(4).jpeg" },
+            { title: "Overview of AI Specialization", provider: "Huawei ICT Academy", category: "huawei", date: "2025-12-13", img: "https://uploads.onecompiler.io/44sv66pr9/1793031386000/WhatsApp%20Image%202026-10-26%20at%207.05.39%20PM.jpeg" },
+            { title: "Data Management & Analysis (CRA Training)", provider: "Huawei ICT Academy", category: "huawei", date: "2025-12-21", img: "https://uploads.onecompiler.io/44sv66pr9/1793031386000/WhatsApp%20Image%202026-10-26%20at%207.05.39%20PM.jpeg" },
+            { title: "Python Skill Certification Test", provider: "One Roadmap", category: "tech", date: "2026-07-30", img: "https://uploads.onecompiler.io/44sv66pr9/1793031575873/WhatsApp%20Image%202026-10-26%20at%207.05.43%20PM%20(1).jpeg" },
+            { title: "Cybersecurity Superhero Academy 2025", provider: "NTI & وزارة الاتصالات", category: "tech", date: "2025", img: "https://uploads.onecompiler.io/44sv66pr9/1793031545087/WhatsApp%20Image%202026-10-26%20at%207.05.43%20PM.jpeg" },
+            { title: "Digital Egypt Cubs Initiative - Level One", provider: "وزارة الاتصالات & Udacity", category: "deci", date: "أكتوبر 2025", img: "https://uploads.onecompiler.io/44sv66pr9/1793031591672/WhatsApp%20Image%202026-10-26%20at%207.05.42%20PM%20(7).jpeg" },
+            { title: "مسابقة DIGITOPIA - الذكاء الاصطناعي", provider: "وزارة الاتصالات & ITIDA", category: "honors", date: "2025", img: "https://uploads.onecompiler.io/44sv66pr9/1793031566620/WhatsApp%20Image%202026-10-26%20at%207.05.43%20PM%20(2).jpeg" },
+            { title: "تحدي القراءة العربي (الموسم السادس)", provider: "مبادرات محمد بن راشد آل مكتوم", category: "honors", date: "2022-05-10", img: "https://uploads.onecompiler.io/44sv66pr9/1793031557680/WhatsApp%20Image%202026-10-26%20at%207.05.43%20PM%20(3).jpeg" },
+            { title: "شهادة دار أشبال القرآن (البرنامج الرمضاني)", provider: "دار أشبال القرآن", category: "honors", date: "رمضان 1444", img: "https://uploads.onecompiler.io/44sv66pr9/1793031551036/WhatsApp%20Image%202026-10-26%20at%207.05.43%20PM%20(4).jpeg" }
+        ];
+
+        const animeQuotes = [
+            "\"العمل الجاد يتغلب على الموهبة إذا لم تعمل الموهبة بجد!\" 💥",
+            "\"طموح أحمد في دمج الذكاء الاصطناعي مع الطب سيغير المستقبل!\" 🩺✨",
+            "\"مرحباً بك في عالم الابتكار! تصفح المشاريع والشهادات واستمتع بالزيارة!\" 🚀",
+            "\"العلم والتكنولوجيا هما السلاح الحقيقي لبناء المستقبل!\" 🔬💻"
+        ];
+        let currentQuoteIdx = 0;
+
+        const certsGrid = document.getElementById('certsGrid');
+        let activeCategory = 'all';
+
+        function renderCerts(items) {
+            certsGrid.innerHTML = '';
+            if(items.length === 0) {
+                certsGrid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--text-sub); padding: 40px;">لا توجد شهادات تطابق البحث حالياً.</div>`;
+                return;
+            }
+            items.forEach(cert => {
+                const card = document.createElement('div');
+                card.className = 'cert-card';
+                card.onclick = () => openModal(cert.img);
+                card.innerHTML = `
+                    <div class="cert-img-container">
+                        <img src="${cert.img}" alt="${cert.title}" onerror="this.src='https://placehold.co/400x250/0f172a/00f2fe?text=${encodeURIComponent(cert.title)}'">
+                    </div>
+                    <div class="cert-body">
+                        <div>
+                            <h4>${cert.title}</h4>
+                            <p>${cert.provider}</p>
+                        </div>
+                        <div class="cert-date"><i class="fa-regular fa-calendar"></i> ${cert.date}</div>
+                    </div>
+                `;
+                certsGrid.appendChild(card);
+            });
+        }
+
+        function filterCerts(category, event) {
+            activeCategory = category;
+            document.querySelectorAll('.folder-btn').forEach(btn => btn.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            applyFilters();
+        }
+
+        function handleSearch() {
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = certificates.filter(c => {
+                const matchesCategory = (activeCategory === 'all' || c.category === activeCategory);
+                const matchesSearch = c.title.toLowerCase().includes(query) || c.provider.toLowerCase().includes(query);
+                return matchesCategory && matchesSearch;
+            });
+            renderCerts(filtered);
+        }
+
+        function nextAnimeQuote() {
+            currentQuoteIdx = (currentQuoteIdx + 1) % animeQuotes.length;
+            document.getElementById('anime-quote').innerText = animeQuotes[currentQuoteIdx];
+        }
+
+        function copyText(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showToast("تم نسخ: " + text);
+            }).catch(() => {
+                showToast("تم النسخ بنجاح!");
+            });
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 3000);
+        }
+
+        function openModal(imgSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImg');
+            modal.style.display = 'flex';
+            modalImg.src = imgSrc;
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        // Particle System Script for Anime Aura Background
+        const canvas = document.getElementById('anime-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.reset();
+            }
+            reset() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 3 + 1;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * -1 - 0.2;
+                this.color = ['#00f2fe', '#4facfe', '#ff2a85', '#9d4edd'][Math.floor(Math.random() * 4)];
+                this.alpha = Math.random() * 0.7 + 0.3;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.y < 0 || this.x < 0 || this.x > canvas.width) {
+                    this.reset();
+                    this.y = canvas.height;
+                }
+            }
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+        }
+
+        for (let i = 0; i < 45; i++) {
+            particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateParticles);
+        }
+
+        function triggerConfetti() {
+            for(let i = 0; i < 20; i++) {
+                particles.push(new Particle());
+            }
+            showToast("✨ تحية الأنمي الخاصة لأحمد أحمد! 🌟");
+        }
+
+        window.onload = function() {
+            renderCerts(certificates);
+            animateParticles();
+        };
+    </script>
+</body>
+</html>
